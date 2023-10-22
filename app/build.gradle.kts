@@ -3,7 +3,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.secrets)
-    id ("kotlin-kapt")
+    id("kotlin-kapt")
 }
 
 android {
@@ -14,8 +14,8 @@ android {
         applicationId = "com.nohjunh.android.watcha.assignment"
         minSdk = 23
         targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = Configurations.VERSION_CODE
+        versionName = Configurations.VERSION_NAME
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
