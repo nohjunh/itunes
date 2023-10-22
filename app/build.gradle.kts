@@ -1,19 +1,15 @@
-@Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
-    alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.secrets)
-    id("kotlin-kapt")
+    id("nohjunh.android.application")
+    id("nohjunh.android.application.compose")
+    id("nohjunh.android.hilt")
+    id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
 }
 
 android {
     namespace = "com.nohjunh.android.watcha.assignment"
-    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.nohjunh.android.watcha.assignment"
-        minSdk = 23
-        targetSdk = 34
         versionCode = Configurations.VERSION_CODE
         versionName = Configurations.VERSION_NAME
 
@@ -31,20 +27,6 @@ android {
                 "proguard-rules.pro"
             )
         }
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
-    }
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_17.toString()
-    }
-    buildFeatures {
-        compose = true
-        buildConfig = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.5"
     }
     packaging {
         resources {
