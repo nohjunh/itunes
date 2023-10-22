@@ -6,6 +6,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -18,6 +20,8 @@ import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.nohjunh.android.watcha.assignment.core.model.TrackItem
+import com.nohjunh.android.watcha.assignment.core.ui.AppendErrorBody
+import com.nohjunh.android.watcha.assignment.core.ui.ErrorBody
 import com.nohjunh.android.watcha.assignment.core.ui.LoadingIndicator
 import com.nohjunh.android.watcha.assignment.core.ui.TrackCard
 
@@ -61,7 +65,11 @@ private fun Content(
     ) {
         when (trackList.loadState.refresh) {
             is LoadState.Loading -> LoadingIndicator()
-            is LoadState.Error -> LoadingIndicator()
+            is LoadState.Error ->
+                ErrorBody(
+                    onClick = { trackList.retry() }
+                )
+
             else -> {
                 SearchBody(trackList)
             }
@@ -85,9 +93,19 @@ fun SearchBody(trackList: LazyPagingItems<TrackItem>) {
             }
         }
         item {
-            if (trackList.loadState.append is LoadState.Loading) {
-                LoadingIndicator()
+            if (isLoadStateAppendingLoading(trackList)) {
+                CircularProgressIndicator(
+                    color = MaterialTheme.colorScheme.onPrimary
+                )
+            } else { // LoadState.Error
+                AppendErrorBody(
+                    onClick = { trackList.retry() }
+                )
             }
         }
     }
 }
+
+@Composable
+private fun isLoadStateAppendingLoading(trackList: LazyPagingItems<TrackItem>) =
+    trackList.loadState.append is LoadState.Loading
