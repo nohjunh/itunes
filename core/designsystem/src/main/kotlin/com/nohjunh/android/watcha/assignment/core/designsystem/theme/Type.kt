@@ -89,7 +89,7 @@ internal val AssignmentTypography = Typography(
     ),
     bodyLarge = TextStyle(
         fontFamily = AssignmentProjectFontFamily,
-        fontWeight = FontWeight.Normal,
+        fontWeight = FontWeight.Bold,
         fontSize = 16.sp,
         lineHeight = 24.sp,
         letterSpacing = 0.5.sp,
