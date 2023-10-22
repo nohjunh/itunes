@@ -20,3 +20,4 @@ dependencyResolutionManagement {
 rootProject.name = "assignment"
 include(":app")
 include(":core:common")
+include(":core:data")
