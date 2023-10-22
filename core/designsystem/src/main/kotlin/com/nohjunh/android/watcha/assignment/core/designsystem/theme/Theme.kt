@@ -23,9 +23,9 @@ import androidx.compose.ui.unit.dp
 val LightDefaultColorScheme = lightColorScheme(
     primary = Color.Black,
     onPrimary = Color.White,
-    primaryContainer = Purple90,
-    onPrimaryContainer = Purple10,
-    secondary = Pink40,
+    primaryContainer = Gray90,
+    onPrimaryContainer = Gray10,
+    secondary = Pink50,
     onSecondary = Color.White,
     secondaryContainer = Pink30,
     onSecondaryContainer = Pink90,
