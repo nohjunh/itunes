@@ -45,7 +45,7 @@ fun TrackCard(
 }
 
 @Composable
-fun TrackContents(
+private fun TrackContents(
     trackItem: TrackItem,
     modifier: Modifier = Modifier,
 ) {
@@ -78,7 +78,7 @@ fun TrackContents(
 }
 
 @Composable
-fun ArtworkImage(
+private fun ArtworkImage(
     imageUrl: String,
     contentDescription: String,
     modifier: Modifier = Modifier,
