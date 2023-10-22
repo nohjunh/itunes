@@ -24,6 +24,7 @@ secrets {
 dependencies {
     implementation(project(":core:common"))
     implementation(project(":core:model"))
+    implementation(project(":core:database"))
 
     implementation(libs.coil.kt)
     implementation(libs.coil.kt.svg)
