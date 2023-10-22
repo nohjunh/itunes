@@ -26,4 +26,5 @@ object PreTaskIcons {
     val CheckCircleFilled = R.drawable.ic_round_check_circle_24
     val CancelFilled = R.drawable.ic_round_cancel_24
     val CopyIcon = R.drawable.ic_outline_content_copy_24
+    val Storage = R.drawable.ic_round_storage_24
 }

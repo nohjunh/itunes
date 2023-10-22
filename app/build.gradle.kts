@@ -39,6 +39,10 @@ android {
 }
 
 dependencies {
+    // feature modules
+    implementation(project(":feature:search"))
+    implementation(project(":feature:storage"))
+
     // core modules
     implementation(project(":core:common"))
     implementation(project(":core:data"))

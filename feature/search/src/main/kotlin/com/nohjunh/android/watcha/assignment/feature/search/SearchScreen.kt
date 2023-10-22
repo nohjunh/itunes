@@ -1,4 +1,4 @@
-package com.nohjunh.android.watcha.feature.storage
+package com.nohjunh.android.watcha.assignment.feature.search
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -7,7 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 
 @Composable
-fun StorageScreen(
+fun SearchScreen(
     modifier: Modifier = Modifier,
     onShowSnackbar: (String) -> Unit,
 ) {
@@ -15,7 +15,7 @@ fun StorageScreen(
         modifier = modifier.fillMaxSize()
     ) {
         Text(
-            text = "Storage"
+            text = "Search"
         )
     }
 }

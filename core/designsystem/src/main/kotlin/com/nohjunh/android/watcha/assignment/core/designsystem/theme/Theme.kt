@@ -45,7 +45,7 @@ val LightDefaultColorScheme = lightColorScheme(
     onSurfaceVariant = DarkNavy30,
     inverseSurface = DarkPurpleGray20,
     inverseOnSurface = DarkPurpleGray95,
-    outline = Gray30,
+    outline = Gray20,
 )
 
 /**

@@ -8,6 +8,7 @@ import androidx.navigation.NavDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.nohjunh.android.watcha.assignment.core.common.navigation.AssignmentNavRoutes
 import kotlinx.coroutines.CoroutineScope
 
 @Composable
@@ -37,6 +38,7 @@ class AssignmentAppState(
 
     val topLevelDestinations: Set<String>
         get() = setOf(
-
+            AssignmentNavRoutes.Search.route,
+            AssignmentNavRoutes.Storage.route
         )
 }
