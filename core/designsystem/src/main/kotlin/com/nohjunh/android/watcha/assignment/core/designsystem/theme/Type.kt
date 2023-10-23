@@ -54,7 +54,7 @@ internal val AssignmentTypography = Typography(
     ),
     headlineMedium = TextStyle(
         fontFamily = AssignmentProjectFontFamily,
-        fontWeight = FontWeight.Normal,
+        fontWeight = FontWeight.Bold,
         fontSize = 28.sp,
         lineHeight = 36.sp,
         letterSpacing = 0.sp,
