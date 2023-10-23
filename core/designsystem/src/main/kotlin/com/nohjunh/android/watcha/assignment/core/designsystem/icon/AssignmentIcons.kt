@@ -2,7 +2,7 @@ package com.nohjunh.android.watcha.assignment.core.designsystem.icon
 
 import com.nohjunh.android.watcha.core.designsystem.R
 
-object PreTaskIcons {
+object AssignmentIcons {
     val ArrowBack = R.drawable.ic_round_arrow_back_24
     val Search = R.drawable.ic_round_search_24
     val ArrowBackIos = R.drawable.ic_round_arrow_back_ios_new_24

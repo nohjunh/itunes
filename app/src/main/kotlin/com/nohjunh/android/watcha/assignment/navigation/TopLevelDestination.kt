@@ -2,8 +2,8 @@ package com.nohjunh.android.watcha.assignment.navigation
 
 import com.nohjunh.android.watcha.assignment.R
 import com.nohjunh.android.watcha.assignment.core.common.navigation.AssignmentNavRoutes
-import com.nohjunh.android.watcha.assignment.core.designsystem.icon.PreTaskIcons.Search
-import com.nohjunh.android.watcha.assignment.core.designsystem.icon.PreTaskIcons.Storage
+import com.nohjunh.android.watcha.assignment.core.designsystem.icon.AssignmentIcons.Search
+import com.nohjunh.android.watcha.assignment.core.designsystem.icon.AssignmentIcons.Storage
 
 object TopLevelDestination {
     val TopLevelItems = listOf(
