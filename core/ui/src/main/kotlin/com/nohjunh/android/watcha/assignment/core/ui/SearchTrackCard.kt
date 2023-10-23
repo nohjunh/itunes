@@ -7,22 +7,26 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Card
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImage
+import com.nohjunh.android.watcha.assignment.core.designsystem.component.AssignmentIconButton
+import com.nohjunh.android.watcha.assignment.core.designsystem.icon.AssignmentIcons
 import com.nohjunh.android.watcha.assignment.core.model.TrackItem
 
 @Composable
-fun TrackCard(
+fun SearchTrackCard(
     modifier: Modifier = Modifier,
     trackItem: TrackItem,
+    onClick: () -> Unit,
 ) {
     Card(modifier) {
         Row(
@@ -40,6 +44,17 @@ fun TrackCard(
                 trackItem = trackItem,
                 modifier = Modifier.weight(3f)
             )
+            Spacer(modifier = Modifier.width(15.dp))
+            AssignmentIconButton(
+                onClick = { onClick() }
+            ) {
+                Icon(
+                    modifier = Modifier.size(24.dp),
+                    painter = painterResource(id = AssignmentIcons.Storage),
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.secondary
+                )
+            }
         }
     }
 }
@@ -75,17 +90,4 @@ private fun TrackContents(
         )
         Spacer(modifier = Modifier.height(8.dp))
     }
-}
-
-@Composable
-private fun ArtworkImage(
-    imageUrl: String,
-    contentDescription: String,
-    modifier: Modifier = Modifier,
-) {
-    AsyncImage(
-        modifier = modifier.heightIn(min = 80.dp, max = 120.dp),
-        model = imageUrl,
-        contentDescription = contentDescription
-    )
 }
