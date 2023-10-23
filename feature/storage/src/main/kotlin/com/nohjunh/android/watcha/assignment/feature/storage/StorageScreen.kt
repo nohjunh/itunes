@@ -17,6 +17,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.nohjunh.android.watcha.assignment.core.designsystem.component.AssignmentTopAppBar
 import com.nohjunh.android.watcha.assignment.core.model.TrackItem
+import com.nohjunh.android.watcha.assignment.core.ui.ErrorBody
 import com.nohjunh.android.watcha.assignment.core.ui.LoadingIndicator
 import com.nohjunh.android.watcha.assignment.core.ui.StorageTrackCard
 import com.nohjunh.android.watcha.feature.storage.R
@@ -81,7 +82,13 @@ private fun Content(
                     trackList = storageUiState.trackList
                 )
 
-                is StorageUiState.LoadFailed -> LoadingIndicator()
+                is StorageUiState.LoadFailed ->
+                    ErrorBody(
+                        isSearch = false,
+                        onClick = {
+                            storageViewModel.getTrackList()
+                        }
+                    )
             }
         }
     }

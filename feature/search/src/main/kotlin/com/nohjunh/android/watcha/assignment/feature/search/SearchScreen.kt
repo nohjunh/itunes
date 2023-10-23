@@ -80,7 +80,10 @@ private fun Content(
                 is LoadState.Loading -> LoadingIndicator()
                 is LoadState.Error ->
                     ErrorBody(
-                        onClick = { trackList.retry() }
+                        isSearch = true,
+                        onClick = {
+                            trackList.retry()
+                        }
                     )
 
                 else -> {

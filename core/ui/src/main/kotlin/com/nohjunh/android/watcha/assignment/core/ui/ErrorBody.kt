@@ -22,6 +22,7 @@ import com.nohjunh.android.watcha.core.ui.R
 
 @Composable
 fun ErrorBody(
+    isSearch: Boolean,
     onClick: () -> Unit,
 ) {
     Box(
@@ -43,11 +44,13 @@ fun ErrorBody(
                 color = MaterialTheme.colorScheme.onPrimary
             )
             Spacer(modifier = Modifier.height(5.dp))
-            Text(
-                text = stringResource(id = R.string.network_status_check),
-                style = MaterialTheme.typography.titleSmall,
-                color = MaterialTheme.colorScheme.onPrimary
-            )
+            if (isSearch) {
+                Text(
+                    text = stringResource(id = R.string.network_status_check),
+                    style = MaterialTheme.typography.titleSmall,
+                    color = MaterialTheme.colorScheme.onPrimary
+                )
+            }
             Spacer(modifier = Modifier.height(20.dp))
             OutlinedButton(
                 onClick = onClick,
