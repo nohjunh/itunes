@@ -25,7 +25,7 @@ import com.nohjunh.android.watcha.assignment.core.ui.AppendErrorBody
 import com.nohjunh.android.watcha.assignment.core.ui.ErrorBody
 import com.nohjunh.android.watcha.assignment.core.ui.LoadingIndicator
 import com.nohjunh.android.watcha.assignment.core.ui.ShimmerTrackCard
-import com.nohjunh.android.watcha.assignment.core.ui.TrackCard
+import com.nohjunh.android.watcha.assignment.core.ui.SearchTrackCard
 import com.nohjunh.android.watcha.feature.search.R
 
 @Composable
@@ -84,7 +84,10 @@ private fun Content(
                     )
 
                 else -> {
-                    SearchBody(trackList)
+                    SearchBody(
+                        trackList = trackList,
+                        searchViewModel = searchViewModel
+                    )
                 }
             }
         }
@@ -92,7 +95,10 @@ private fun Content(
 }
 
 @Composable
-fun SearchBody(trackList: LazyPagingItems<TrackItem>) {
+fun SearchBody(
+    trackList: LazyPagingItems<TrackItem>,
+    searchViewModel: SearchViewModel,
+) {
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
@@ -102,10 +108,12 @@ fun SearchBody(trackList: LazyPagingItems<TrackItem>) {
     ) {
         items(count = trackList.itemCount) { index ->
             trackList[index]?.let { item ->
-                TrackCard(
+                SearchTrackCard(
                     modifier = Modifier.fillMaxWidth(),
-                    trackItem = item
-                )
+                    trackItem = item,
+                ) {
+                    searchViewModel.saveTrackItem(item)
+                }
             }
         }
         item {
