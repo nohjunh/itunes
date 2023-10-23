@@ -124,14 +124,26 @@ fun SearchBody(
 
 @Composable
 private fun AppendLoadingState(trackList: LazyPagingItems<TrackItem>) {
-    if (isLoadStateAppendingLoading(trackList)) {
-        ShimmerTrackCard()
-    } else { // LoadState.Error
-        AppendErrorBody(
-            onClick = { trackList.retry() }
-        )
+    when {
+        isLoadStateAppendingLoading(trackList) -> {
+            ShimmerTrackCard()
+        }
+
+        isLoadStateAppendingError(trackList) -> {
+            AppendErrorBody(
+                onClick = { trackList.retry() }
+            )
+        }
+
+        else -> {
+            LoadingIndicator()
+        }
     }
 }
+
+@Composable
+private fun isLoadStateAppendingError(trackList: LazyPagingItems<TrackItem>) =
+    trackList.loadState.append is LoadState.Error
 
 @Composable
 private fun isLoadStateAppendingLoading(trackList: LazyPagingItems<TrackItem>) =
