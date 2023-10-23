@@ -1,6 +1,7 @@
-![image](https://github.com/nohjunh/assignment/assets/75293768/5abacb52-1187-4b69-85e5-971f9739b7ba)
+![image](https://github.com/nohjunh/assignment/assets/75293768/f5556c4c-9234-4452-a664-245bfe7d36e9)
 
 <p align="center">
+  <a><img alt="Studio" src="https://img.shields.io/badge/Studio-Giraffe 2022.3.1-orange?style=flat"/></a>
   <a><img alt="Kotlin" src="https://img.shields.io/badge/Kotlin-1.8.20-orange?style=flat"/></a>
   <a><img alt="Java version" src="https://img.shields.io/badge/Java version-17-orange?style=flat"/></a>
   <a><img alt="minSdk" src="https://img.shields.io/badge/minSdkVersion-23-orange?style=flat"/></a>
@@ -9,10 +10,18 @@
 
 ---
 
-## 🚦 Required Detailed Specifications
+## 🚦 Detailed Specifications
 * iTunes search API를 호출하고, 결과 트랙 리스트를 나열한다.
 * Pagination을 구현하여 트랙들을 리스트에 보여준다.
 * limit, offset parameter를 이용한다.
+* Open API이기에 발생 가능한 중복 아이템에 대한 대응 
+
+---
+
+## 🔑 Build Project
+프로젝트의 "local.properties" 파일에 다음과 같이 API BASE_URL을 추가한다.
+
+<img width="263" alt="image" src="https://github.com/nohjunh/assignment/assets/75293768/91181f29-e6bb-48b8-9a8f-8214ca932c97">
 
 ---
 
@@ -24,30 +33,22 @@
 
 | 영상 | 설명 |
 | --- | ---- |
-| <img src="https://github.com/nohjunh/assignment/assets/75293768/b339392f-6736-46d6-9d30-215f4173892b.gif" alt="drawing" width="250px" /> | iTunes search API를 Pagingnation을 이용해 호출하고, </br> 응답으로 받은 TrackList를 표시 |
-| <img src="https://github.com/nohjunh/assignment/assets/75293768/3014bcd9-b59e-4cdc-85e3-5006fde996c6.gif" alt="drawing" width="250px" /> | 초기 검색 데이터를 불러오기도 전에 에러가 발생할 경우, SearchScreen 전체를 Error 발생을 인지할 수 있게 표시하고, 다시 시도할 수 있는 인터페이스를 표시한다. |
-| <img src="https://github.com/nohjunh/assignment/assets/75293768/e3656507-7b63-4a7e-8910-3e83b2cc9c7a.gif" alt="drawing" width="250px" /> | 트랙리스트를 불러온 이후, Pagination을 통해 새로운 트랙을 불러오는 과정에서 Error 발생 시 다시 Load할 수 있는 인터페이스를 표시한다. |
-| <img src="https://github.com/nohjunh/assignment/assets/75293768/3d8b5aaa-aaf8-4aea-8dd4-b415b026a495.gif" alt="drawing" width="250px" /> | **트랙 보관 :** 검색 결과 중 원하는 트랙을 TrackItem을 보관함에 저장하려면, TrackItem의 우측에 있는 보관함 아이콘을 클릭 </br></br> **StorageScreen으로 전환 시 저장된 트랙 불러오기:** StorageScreen으로 전환 시 storage_track_resource 테이블에서 저장된 TrackList를 불러와 리스트 표시 </br></br> **트랙 삭제 :** StorageScreen에서 각 TrackItem의 우측 상단에 있는 Cancel Icon을 클릭하면 해당 TrackItem을 삭제 |
-| <img src="https://github.com/nohjunh/assignment/assets/75293768/d533a28d-3fd4-483e-8c73-55396d6df744.gif" alt="drawing" width="250px" /> | TrackList Loading 과정에서 ShimmerEffect를 적용하여 UX 개선 |
-
----
-
-## 🔑 Build Project
-프로젝트의 "local.properties" 파일에 다음과 같이 API_KEY를 추가한다.
-
-<img width="271" alt="image" src="https://github.com/nohjunh/assignment/assets/75293768/a898c26e-486c-432f-94c9-5dc39a9379a9">
-
+| <img src="https://github.com/nohjunh/assignment/assets/75293768/a50e8c60-396a-4210-aa17-895086882fc8.gif" alt="drawing" width="250px" /> | iTunes search API를 Pagingnation을 이용해 호출하고, </br> 응답으로 받은 TrackList를 표시 |
+| <img src="https://github.com/nohjunh/assignment/assets/75293768/130c0f6b-04b6-4f32-a58d-4c577af1abc3.gif" alt="drawing" width="250px" /> | 초기 검색 데이터를 불러오기도 전에 에러가 발생할 경우, SearchScreen 전체를 Error 발생을 인지할 수 있게 표시하고, 다시 시도할 수 있는 인터페이스를 표시한다. |
+| <img src="https://github.com/nohjunh/assignment/assets/75293768/a2fa0305-ceb1-4ec9-a6a2-dc159933245a.gif" alt="drawing" width="250px" /> | 트랙리스트를 불러온 이후, Pagination을 통해 새로운 트랙을 불러오는 과정에서 Error 발생 시 다시 Load할 수 있는 인터페이스를 표시한다. |
+| <img src="https://github.com/nohjunh/assignment/assets/75293768/f89a8a08-99af-401a-8e7b-de3a399d4e4f.gif" alt="drawing" width="250px" /> | **트랙 보관 :** 검색 결과 중 원하는 트랙을 TrackItem을 보관함에 저장하려면, TrackItem의 우측에 있는 보관함 아이콘을 클릭 </br></br> **StorageScreen으로 전환 시 저장된 트랙 불러오기:** StorageScreen으로 전환 시 storage_track_resource 테이블에서 저장된 TrackList를 불러와 리스트 표시 </br></br> **트랙 삭제 :** StorageScreen에서 각 TrackItem의 우측 상단에 있는 Cancel Icon을 클릭하면 해당 TrackItem을 삭제 |
+| <img src="https://github.com/nohjunh/assignment/assets/75293768/2a961870-1d76-4cc4-b6b8-cdff7c4f1d5d.gif" alt="drawing" width="250px" /> | TrackList Loading 과정에서 ShimmerEffect를 적용하여 UX 개선 |
 
 ---
 
 ## 🏢 Architecture Overview
 
-![image](https://github.com/nohjunh/assignment/assets/75293768/e6e321fb-9b04-48e0-bd1a-a5aa81dc2557)
+![image](https://github.com/nohjunh/assignment/assets/75293768/05cc3011-0109-45ac-bf33-3c553159b957)
 
 * 본 프로젝트는 데이터, 도메인, UI 레이어를 갖는 단방향 데이터 흐름의 반응형 프로그래밍 모델을 따른다. 
 UI 레이어와 같은 상위 레이어가 하위 레이어의 데이터를 제공받기 위해 이벤트 호출하고 그 데이터는 하위 레이어에서 상위 레이어로 흐르는 구조로 진행된다.
 
-<img width="461" alt="image" src="https://github.com/nohjunh/assignment/assets/75293768/80c3647e-670e-4a80-abb4-8ad8a873ac54">
+<img width="461" alt="스크린샷 2023-10-23 오후 9 30 12" src="https://github.com/nohjunh/assignment/assets/75293768/0d72491c-9ab9-4873-a654-7c56360b9fcd">
 
 * UI 레이어는 JetPack Compose를 사용하여 빌드하였고, ViewModel에서 UseCase, Repository를 통한 데이터 스트림을 수신하고 이를 UI State로 변환한다.
 * 사용자가 앱과의 상호 작용하는 방식은 ViewModel에서 이벤트로 처리
@@ -60,10 +61,10 @@ UI 레이어와 같은 상위 레이어가 하위 레이어의 데이터를 제�
 <table>
     <tr>
         <td>
-            <img src="https://github.com/nohjunh/assignment/assets/75293768/b8b42c85-ee4f-41de-9a38-fc26fd4e64dc" alt="Image 1" width="100%">
+            <img src="https://github.com/nohjunh/assignment/assets/75293768/7267cbc2-c4ef-4620-9578-46c3ffb44208.png" alt="Image 1" width="100%">
         </td>
         <td>
-            <img src="https://github.com/nohjunh/assignment/assets/75293768/d131f129-5c38-4dc0-85e6-5d5fd6231c8f" alt="Image 2" width="100%">
+            <img src="https://github.com/nohjunh/assignment/assets/75293768/e7a16256-d78d-4a85-8dba-cc2ee2ef0bc5.png" alt="Image 2" width="100%">
         </td>
     </tr>
 </table>
