@@ -50,7 +50,7 @@ fun SnackbarBox(
                 Text(
                     text = it.visuals.message,
                     style = MaterialTheme.typography.titleMedium,
-                    color = MaterialTheme.colorScheme.background
+                    color = MaterialTheme.colorScheme.onPrimary
                 )
             }
             Row(
