@@ -1,6 +1,7 @@
 package com.nohjunh.android.watcha.assignment.core.database.di
 
 import com.nohjunh.android.watcha.assignment.core.database.AssignmentDatabase
+import com.nohjunh.android.watcha.assignment.core.database.dao.StorageTrackItemDao
 import com.nohjunh.android.watcha.assignment.core.database.dao.TrackItemDao
 import dagger.Module
 import dagger.Provides
@@ -14,5 +15,10 @@ object DaosModule {
     fun providesTrackItemDao(
         database: AssignmentDatabase,
     ): TrackItemDao = database.trackItemDao()
+
+    @Provides
+    fun providesStorageTrackItemDao(
+        database: AssignmentDatabase,
+    ): StorageTrackItemDao = database.storageTrackItemDao()
 
 }
