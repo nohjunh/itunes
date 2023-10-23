@@ -6,8 +6,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -23,6 +21,7 @@ import com.nohjunh.android.watcha.assignment.core.model.TrackItem
 import com.nohjunh.android.watcha.assignment.core.ui.AppendErrorBody
 import com.nohjunh.android.watcha.assignment.core.ui.ErrorBody
 import com.nohjunh.android.watcha.assignment.core.ui.LoadingIndicator
+import com.nohjunh.android.watcha.assignment.core.ui.ShimmerTrackCard
 import com.nohjunh.android.watcha.assignment.core.ui.TrackCard
 
 @Composable
@@ -93,16 +92,19 @@ fun SearchBody(trackList: LazyPagingItems<TrackItem>) {
             }
         }
         item {
-            if (isLoadStateAppendingLoading(trackList)) {
-                CircularProgressIndicator(
-                    color = MaterialTheme.colorScheme.onPrimary
-                )
-            } else { // LoadState.Error
-                AppendErrorBody(
-                    onClick = { trackList.retry() }
-                )
-            }
+            AppendLoadingState(trackList)
         }
+    }
+}
+
+@Composable
+private fun AppendLoadingState(trackList: LazyPagingItems<TrackItem>) {
+    if (isLoadStateAppendingLoading(trackList)) {
+        ShimmerTrackCard()
+    } else { // LoadState.Error
+        AppendErrorBody(
+            onClick = { trackList.retry() }
+        )
     }
 }
 
