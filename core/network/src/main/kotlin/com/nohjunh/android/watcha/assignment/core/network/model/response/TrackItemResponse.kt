@@ -1,6 +1,5 @@
 package com.nohjunh.android.watcha.assignment.core.network.model.response
 
-
 import com.google.gson.annotations.SerializedName
 import com.nohjunh.android.watcha.assignment.core.database.model.TrackItemEntity
 

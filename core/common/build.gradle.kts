@@ -16,18 +16,11 @@ if (localPropertiesFile.exists()) {
 
 android {
     namespace = "com.nohjunh.android.watcha.core.common"
-    buildTypes {
-        getByName("release") {
-            buildConfigField(
-                "String", "BASE_URL", "\"${localProperties["RELEASE_BASE_URL"] as String?}\""
-            )
-        }
 
-        getByName("debug") {
-            buildConfigField(
-                "String", "BASE_URL", "\"${localProperties["DEBUG_BASE_URL"] as String?}\""
-            )
-        }
+    defaultConfig {
+        buildConfigField(
+            "String", "BASE_URL", "\"${localProperties["BASE_URL"] as String?}\""
+        )
     }
 }
 

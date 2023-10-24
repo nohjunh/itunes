@@ -15,4 +15,3 @@ interface SearchApiService {
     ): ApiResponse<TrackListResponse>
 
 }
-
