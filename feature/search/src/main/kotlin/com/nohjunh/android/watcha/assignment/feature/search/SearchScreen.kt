@@ -39,10 +39,11 @@ fun SearchScreen(
 
     Content(
         modifier = modifier,
-        searchViewModel = searchViewModel,
+        onSaveTrackClick = searchViewModel::saveTrackItem,
         trackList = trackList,
         onShowSnackbar = onShowSnackbar,
-        searchSnackbarMessage = searchSnackbarMessage
+        searchSnackbarMessage = searchSnackbarMessage,
+        onClearSnackbarMeesage = searchViewModel::clearSnackbarMessage
     )
 }
 
@@ -50,15 +51,16 @@ fun SearchScreen(
 @Composable
 private fun Content(
     modifier: Modifier = Modifier,
-    searchViewModel: SearchViewModel,
+    onSaveTrackClick: (TrackItem) -> Unit = {},
     trackList: LazyPagingItems<TrackItem>,
-    onShowSnackbar: (String) -> Unit,
-    searchSnackbarMessage: String,
+    onShowSnackbar: (String) -> Unit = {},
+    searchSnackbarMessage: String = "",
+    onClearSnackbarMeesage: () -> Unit = {},
 ) {
     LaunchedEffect(searchSnackbarMessage) {
         if (searchSnackbarMessage.isNotEmpty()) {
             onShowSnackbar(searchSnackbarMessage)
-            searchViewModel.clearSnackbarMessage()
+            onClearSnackbarMeesage()
         }
     }
 
@@ -89,7 +91,7 @@ private fun Content(
                 else -> {
                     SearchBody(
                         trackList = trackList,
-                        searchViewModel = searchViewModel
+                        onSaveTrackClick = onSaveTrackClick
                     )
                 }
             }
@@ -100,7 +102,7 @@ private fun Content(
 @Composable
 fun SearchBody(
     trackList: LazyPagingItems<TrackItem>,
-    searchViewModel: SearchViewModel,
+    onSaveTrackClick: (TrackItem) -> Unit,
 ) {
     LazyColumn(
         modifier = Modifier
@@ -115,7 +117,7 @@ fun SearchBody(
                     modifier = Modifier.fillMaxWidth(),
                     trackItem = item,
                 ) {
-                    searchViewModel.saveTrackItem(item)
+                    onSaveTrackClick(item)
                 }
             }
         }
