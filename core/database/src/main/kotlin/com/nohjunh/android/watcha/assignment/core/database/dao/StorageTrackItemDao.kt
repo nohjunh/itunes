@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface StorageTrackItemDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertTrackItem(trackItem: StorageTrackItemEntity)
+    suspend fun saveTrackItem(trackItem: StorageTrackItemEntity)
 
     @Query("SELECT * FROM storage_track_resource")
     fun getStorageTrackList(): Flow<List<StorageTrackItemEntity>>
