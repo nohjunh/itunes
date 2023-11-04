@@ -21,13 +21,19 @@ class SearchRepositoryImpl @Inject constructor(
     companion object {
         private const val TERM = "greenday"
         private const val ENTITY = "song"
-        private const val PAGE_SIZE = 20
+        private const val PAGING__PAGE_SIZE = 15
+        private const val PAGING__PREFETCH_DISTANCE = 5
+        private const val PAGING__INITIAL_LOAD_SIZE = 15
     }
 
     @OptIn(ExperimentalPagingApi::class)
     override fun getTrackList(): Flow<PagingData<TrackItem>> {
         val pager = Pager(
-            config = PagingConfig(pageSize = PAGE_SIZE),
+            config = PagingConfig(
+                pageSize = PAGING__PAGE_SIZE,
+                prefetchDistance = PAGING__PREFETCH_DISTANCE,
+                initialLoadSize = PAGING__INITIAL_LOAD_SIZE
+            ),
             remoteMediator = TrackMediator(
                 term = TERM,
                 entity = ENTITY,
