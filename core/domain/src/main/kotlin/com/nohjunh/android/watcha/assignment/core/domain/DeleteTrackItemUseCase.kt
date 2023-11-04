@@ -1,11 +1,11 @@
 package com.nohjunh.android.watcha.assignment.core.domain
 
-import com.nohjunh.android.watcha.assignment.core.data.StorageRepository
+import com.nohjunh.android.watcha.assignment.core.data.TrackRepository
 import javax.inject.Inject
 
 class DeleteTrackItemUseCase @Inject constructor(
-    private val storageRepository: StorageRepository,
+    private val trackRepository: TrackRepository,
 ) {
     suspend operator fun invoke(trackId: Long): Result<Unit> =
-        storageRepository.deleteTrackItem(trackId)
+        trackRepository.deleteTrackItem(trackId)
 }

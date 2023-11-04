@@ -5,7 +5,9 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.map
+import com.nohjunh.android.watcha.assignment.core.database.dao.StorageTrackItemDao
 import com.nohjunh.android.watcha.assignment.core.database.dao.TrackItemDao
+import com.nohjunh.android.watcha.assignment.core.database.model.StorageTrackItemEntity
 import com.nohjunh.android.watcha.assignment.core.database.model.toDomainModel
 import com.nohjunh.android.watcha.assignment.core.model.TrackItem
 import com.nohjunh.android.watcha.assignment.core.network.datasource.SearchDataSource
@@ -14,10 +16,11 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
-class SearchRepositoryImpl @Inject constructor(
+class TrackRepositoryImpl @Inject constructor(
     private val trackItemDao: TrackItemDao,
+    private val storageTrackItemDao: StorageTrackItemDao,
     private val searchDataSource: SearchDataSource,
-) : SearchRepository {
+) : TrackRepository {
     companion object {
         private const val TERM = "greenday"
         private const val ENTITY = "song"
@@ -49,5 +52,30 @@ class SearchRepositoryImpl @Inject constructor(
             pagingData.map { it.toDomainModel() }
         }
     }
+
+    override fun getStorageTrackList(): Flow<List<TrackItem>> =
+        storageTrackItemDao.getStorageTrackList().map { entityList ->
+            entityList.map {
+                it.toDomainModel()
+            }
+        }
+
+    override suspend fun deleteTrackItem(trackId: Long): Result<Unit> =
+        runCatching {
+            storageTrackItemDao.deleteTrackItem(trackId)
+        }
+
+    override suspend fun saveTrackItem(trackItem: TrackItem): Result<Unit> =
+        runCatching {
+            storageTrackItemDao.saveTrackItem(
+                StorageTrackItemEntity(
+                    trackId = trackItem.id,
+                    artistName = trackItem.artistName,
+                    artworkUrl60 = trackItem.artworkUrl60,
+                    collectionName = trackItem.collectionName,
+                    trackName = trackItem.trackName,
+                )
+            )
+        }
 
 }
