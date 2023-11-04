@@ -2,12 +2,12 @@ package com.nohjunh.android.watcha.assignment.feature.storage
 
 import com.nohjunh.android.watcha.assignment.core.model.TrackItem
 
-sealed class StorageUiState {
-    object Loading : StorageUiState()
+sealed interface StorageUiState {
+    object Loading : StorageUiState
 
     data class Success(
         val trackList: List<TrackItem>,
-    ) : StorageUiState()
+    ) : StorageUiState
 
-    object LoadFailed : StorageUiState()
+    object LoadFailed : StorageUiState
 }
