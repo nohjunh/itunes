@@ -4,8 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.nohjunh.android.watcha.assignment.core.common.result.onFailure
-import com.nohjunh.android.watcha.assignment.core.common.result.onSuccess
 import com.nohjunh.android.watcha.assignment.core.domain.GetTrackListUseCase
 import com.nohjunh.android.watcha.assignment.core.domain.SaveTrackItemUseCase
 import com.nohjunh.android.watcha.assignment.core.model.TrackItem
@@ -19,7 +17,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SearchViewModel @Inject constructor(
-    private val getTrackListUseCase: GetTrackListUseCase,
+    getTrackListUseCase: GetTrackListUseCase,
     private val saveTrackItemUseCase: SaveTrackItemUseCase,
 ) : ViewModel() {
     val trackList: Flow<PagingData<TrackItem>> =
@@ -28,14 +26,15 @@ class SearchViewModel @Inject constructor(
     private val _snackbarMessage = MutableStateFlow("")
     val snackbarMessage: StateFlow<String> = _snackbarMessage
 
-    fun saveTrackItem(trackItem: TrackItem) = viewModelScope.launch {
-        saveTrackItemUseCase(trackItem).collect { result ->
-            result.onSuccess {
-                _snackbarMessage.value = "보관함에 저장했어요."
-            }.onFailure { errorMessage, code ->
-                Timber.e(errorMessage, code)
-                _snackbarMessage.value = "문제가 발생했어요.\n다시 시도해주세요."
-            }
+    fun saveTrackItem(trackItem: TrackItem) {
+        viewModelScope.launch {
+            saveTrackItemUseCase(trackItem)
+                .onSuccess {
+                    _snackbarMessage.value = "보관함에 저장했어요."
+                }.onFailure { e ->
+                    Timber.e(e.message)
+                    _snackbarMessage.value = "문제가 발생했어요.\n다시 시도해주세요."
+                }
         }
     }
 

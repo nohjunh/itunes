@@ -1,13 +1,11 @@
 package com.nohjunh.android.watcha.assignment.core.domain
 
-import com.nohjunh.android.watcha.assignment.core.common.result.Result
-import com.nohjunh.android.watcha.assignment.core.data.StorageRepository
-import kotlinx.coroutines.flow.Flow
+import com.nohjunh.android.watcha.assignment.core.data.TrackRepository
 import javax.inject.Inject
 
 class DeleteTrackItemUseCase @Inject constructor(
-    private val storageRepository: StorageRepository,
+    private val trackRepository: TrackRepository,
 ) {
-    suspend operator fun invoke(trackId: Long): Flow<Result<Unit>> =
-        storageRepository.deleteTrackItem(trackId)
+    suspend operator fun invoke(trackId: Long): Result<Unit> =
+        trackRepository.deleteTrackItem(trackId)
 }

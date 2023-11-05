@@ -1,15 +1,13 @@
 package com.nohjunh.android.watcha.assignment.core.domain
 
-import kotlinx.coroutines.flow.Flow
+import com.nohjunh.android.watcha.assignment.core.data.TrackRepository
 import javax.inject.Inject
-import com.nohjunh.android.watcha.assignment.core.common.result.Result
-import com.nohjunh.android.watcha.assignment.core.data.StorageRepository
 import com.nohjunh.android.watcha.assignment.core.model.TrackItem
 
 class SaveTrackItemUseCase @Inject constructor(
-    private val storageRepository: StorageRepository,
+    private val trackRepository: TrackRepository,
 ) {
-    suspend operator fun invoke(trackItem: TrackItem): Flow<Result<Unit>> =
-        storageRepository.saveTrackItem(trackItem = trackItem)
+    suspend operator fun invoke(trackItem: TrackItem): Result<Unit> =
+        trackRepository.saveTrackItem(trackItem = trackItem)
 
 }

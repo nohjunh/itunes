@@ -1,8 +1,9 @@
 package com.nohjunh.android.watcha.assignment.core.common.result
 
-
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.onStart
 
 sealed interface Result<out T> {
     data class Success<T>(val data: T) : Result<T>
@@ -36,6 +37,19 @@ suspend fun Result<*>.onEmpty(
             action()
         }
     }
+
+/**
+ * Flow를 Result 형식의 Flow로 변환
+ * 성공, 로딩 중, 또는 실패와 같은 다양한 상태에 대한 처리를 일관되게 적용
+ */
+fun <T> Flow<T>.asResult(): Flow<Result<T>> {
+    return this
+        .map<T, Result<T>> {
+            Result.Success(it)
+        }
+        .onStart { emit(Result.Loading) }
+        .catch { emit(Result.Failure(it.message ?: "Throwable", -1)) }
+}
 
 /**
  * Result<R> 형식의 Flow를 받아서 그 내용을 변환한 후 Result<D> 형식의 Flow로 반환

@@ -34,9 +34,11 @@ fun StorageScreen(
     Content(
         modifier = modifier,
         storageUiState = storageUiState,
-        storageViewModel = storageViewModel,
+        onDeleteItemTriggered = storageViewModel::deleteTrackItem,
+        onRetryClick = storageViewModel::getTrackList,
         onShowSnackbar = onShowSnackbar,
-        storageSnackbarMessage = storageSnackbarMessage
+        storageSnackbarMessage = storageSnackbarMessage,
+        onClearSnackbarMeesage = storageViewModel::clearSnackbarMessage
     )
 }
 
@@ -45,19 +47,17 @@ fun StorageScreen(
 private fun Content(
     modifier: Modifier = Modifier,
     storageUiState: StorageUiState,
-    storageViewModel: StorageViewModel,
-    onShowSnackbar: (String) -> Unit,
-    storageSnackbarMessage: String,
+    onDeleteItemTriggered: (Long) -> Unit = {},
+    onRetryClick: () -> Unit = {},
+    onShowSnackbar: (String) -> Unit = {},
+    storageSnackbarMessage: String = "",
+    onClearSnackbarMeesage: () -> Unit = {},
 ) {
     LaunchedEffect(storageSnackbarMessage) {
         if (storageSnackbarMessage.isNotEmpty()) {
             onShowSnackbar(storageSnackbarMessage)
-            storageViewModel.clearSnackbarMessage()
+            onClearSnackbarMeesage()
         }
-    }
-
-    LaunchedEffect(Unit) {
-        storageViewModel.getTrackList()
     }
 
     Scaffold(
@@ -78,7 +78,7 @@ private fun Content(
                 is StorageUiState.Loading -> LoadingIndicator()
                 is StorageUiState.Success -> StorageBody(
                     modifier = modifier,
-                    storageViewModel = storageViewModel,
+                    onDeleteItemTriggered = onDeleteItemTriggered,
                     trackList = storageUiState.trackList
                 )
 
@@ -86,7 +86,7 @@ private fun Content(
                     ErrorBody(
                         isSearch = false,
                         onClick = {
-                            storageViewModel.getTrackList()
+                            onRetryClick()
                         }
                     )
             }
@@ -97,7 +97,7 @@ private fun Content(
 @Composable
 fun StorageBody(
     modifier: Modifier = Modifier,
-    storageViewModel: StorageViewModel,
+    onDeleteItemTriggered: (Long) -> Unit,
     trackList: List<TrackItem>,
 ) {
     LazyVerticalGrid(
@@ -109,7 +109,7 @@ fun StorageBody(
                     modifier = modifier,
                     trackItem = trackList[index],
                 ) { trackId ->
-                    storageViewModel.deleteTrackItem(trackId)
+                    onDeleteItemTriggered(trackId)
                 }
             }
         }

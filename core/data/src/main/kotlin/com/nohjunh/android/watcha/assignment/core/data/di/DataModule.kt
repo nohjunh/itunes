@@ -1,9 +1,7 @@
 package com.nohjunh.android.watcha.assignment.core.data.di
 
-import com.nohjunh.android.watcha.assignment.core.data.SearchRepository
-import com.nohjunh.android.watcha.assignment.core.data.SearchRepositoryImpl
-import com.nohjunh.android.watcha.assignment.core.data.StorageRepository
-import com.nohjunh.android.watcha.assignment.core.data.StorageRepositoryImpl
+import com.nohjunh.android.watcha.assignment.core.data.TrackRepository
+import com.nohjunh.android.watcha.assignment.core.data.TrackRepositoryImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -16,13 +14,7 @@ internal interface DataModule {
     @Singleton
     @Binds
     fun bindSearchRepository(
-        searchRepository: SearchRepositoryImpl,
-    ): SearchRepository
-
-    @Singleton
-    @Binds
-    fun bindStorageRepository(
-        storageRepository: StorageRepositoryImpl,
-    ): StorageRepository
+        searchRepository: TrackRepositoryImpl,
+    ): TrackRepository
 
 }
